@@ -10,12 +10,12 @@ function updateMultipleDays(shop: Shop, days: number): Item[] {
 
 describe("Teste unitário dos itens", () => {
   it("[Backstage]: A qualidade aumenta em 2 quando faltam 10 dias ou menos, em 3 quando faltam 5 dias ou menos, e cai para 0 após o show.", function() {
-    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20)]);
+    const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)]);
     // 4 Dias
-    const items = updateMultipleDays(gildedRose, 4)
+    const items = updateMultipleDays(gildedRose, 16)
     
-    expect(items[0].quality).toBe(28);
-    expect(items[0].sellIn).toBe(6);
+    expect(items[0].quality).toBe(0);
+    expect(items[0].sellIn).toBe(-1);
   });
 
   it("[Aged]: Aumenta 1 em qualidade quanto mais velho fica", function() {
@@ -29,7 +29,7 @@ describe("Teste unitário dos itens", () => {
 
   it("[Sulfuras]: Permanece a mesma quality e SellIn, é um item lendário", function() {
     const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 1, 80)]);
-    // 4 Dias
+    //4 Dias
     const items = updateMultipleDays(gildedRose, 5)
     
     expect(items[0].quality).toBe(80);
@@ -50,10 +50,10 @@ describe("Teste unitário dos itens", () => {
     it("[Conjured]: Degradam em qualidade duas vezes mais rápido que os itens normais", function() {
       const gildedRose = new Shop([new Item("Conjured Mana Cake", 7, 25)]);
       // 4 Dias
-      const items = updateMultipleDays(gildedRose, 5)
+      const items = updateMultipleDays(gildedRose, 15)
       
-      expect(items[0].quality).toBe(15);
-      expect(items[0].sellIn).toBe(2);
+      expect(items[0].quality).toBe(0);
+      expect(items[0].sellIn).toBe(-8);
     });
   })
 

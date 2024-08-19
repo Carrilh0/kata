@@ -3,12 +3,13 @@ import { ItemUpdater } from "./interfaces";
 
 export class updateDefault implements ItemUpdater {
   update (item: Item): void {
+    let conditionalQuality: number;
     if (item.sellIn <= 0) {
-      item.quality= item.quality - 2
+      conditionalQuality = item.quality - 2
     } else {
-      item.quality-- 
+      conditionalQuality = item.quality - 1 
     }
-
+    item.quality = Math.max(0,conditionalQuality)
     item.sellIn--
   }
 }
@@ -46,12 +47,14 @@ export class updateBackstage implements ItemUpdater {
 
 export class updateConjured implements ItemUpdater {
   update(item: Item): void {
+    let conditionalQuality;
     if (item.sellIn <= 0) {
-      item.quality = item.quality - 4
+      conditionalQuality = item.quality - 4
     } else {
-      item.quality = item.quality - 2
+      conditionalQuality = item.quality - 2
     }
 
+    item.quality = Math.max(0, conditionalQuality)
     item.sellIn--
   }
 }
