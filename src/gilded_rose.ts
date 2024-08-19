@@ -1,4 +1,4 @@
-import { ItemUpdaterRegistry } from "./itemUpdaterRegistry";
+import { ItemUpdaterRegistry } from "./item_updater_registry";
 
 // ALTERAÇÃO FEITA APENAS PARA SE ADAPTAR AO TYPESCRIPT
 export class Item {
@@ -20,7 +20,7 @@ export class Shop {
     this.items = items;
   }
   
-  updateQuality() {
+  update() {
     this.items.forEach((item) => {
       const updater = ItemUpdaterRegistry.getUpdaterByItem(item)
       updater.update(item)
